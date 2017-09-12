@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html id="htmlid">
     <head>                     
         <meta name="format-detection" content="telephone=no">
@@ -17,102 +35,74 @@
        <script src="js/player/jquery.simpleplayer.js"></script>
        <script src="common.js"></script>       
         <title>Mobile Helper</title>
+       <style type="text/css">
+              .progressbar-value .progressbar-text {
+    background-color: #106fa7;
+    color: #000000;
+              }
+       </style> 
     </head>
-    <body>                         
-        <div style="height: 30px;padding-bottom: 15px;">
+    <body>         
+        <div style="height: 20px; background-color: yellow; padding-bottom: 5px;">
             <table style="width: 100%;">
-            <tr><td><span style="float: left; font-size: 12pt; font-weight: bold;">Активный Эксперимент</span></td>
-            <td>            
-            <!--a id='check' style="float: right;" class="easyui-linkbutton" data-options="iconCls:'icon-ok'" title="Проверить"></a-->
-            <a id='save' style="float: right;" class="easyui-linkbutton" data-options="iconCls:'icon-save'">Закончить</a>
-            </td>
+            <tr><td><span style="float: left; font-size: 12pt; font-weight: bold;">Помощник для медитации</span></td>           
             </tr>
             </table>
         </div>
         
+        <div style="margin-top: 10px;;">
+             Эксперимент:<input id="experiment">
+             <script type="text/javascript">
+             //alert(PATH);
+             $('#experiment').combobox({
+                    url: PATH+'/ajax_func.php?func=trainings',
+                    method:'get',
+                    valueField: 'id',
+                    textField: 'text',                    
+                    width: '200px'
+             });
+             </script>            
+        </div> 
         
-    <div id="tabs" class="easyui-tabs">
-        
-         
-        <div data-options="title:'Выбранный эксперимент'" style="padding: 15px;overflow-x: hidden;overflow-y: hidden;"> 
-        
-        
-             
-             <div style="margin: 10px;">
-             
-    <div style="margin:5px 0">
-        <a class="easyui-linkbutton exp1" cmd='S1' style="width:60px">Стоять</a>
-        <a class="easyui-linkbutton exp1" cmd='S2' style="width:60px">Сидеть</a>
-        <a class="easyui-linkbutton exp1" cmd='S3' style="width:60px">Лежать</a>
-        <a class="easyui-linkbutton exp1" cmd='D1' style="width:60px">Идти</a>
-        <a class="easyui-linkbutton exp1" cmd='D2' style="width:60px">Бежать</a>
-    </div>    
-    <div style="margin:10px 0">        
-        <a class="easyui-linkbutton exp1" cmd='D3' style="width:60px">Лест. ↑</a>
-        <a class="easyui-linkbutton exp1" cmd='D4' style="width:60px">Лест. ↓</a>
-        <a class="easyui-linkbutton exp1" cmd='D5' style="width:60px">Лифт ↑</a>
-        <a class="easyui-linkbutton exp1" cmd='D6' style="width:60px">Лифт ↓</a>
-    </div>               
-                       
-             </div>           
-             <p id="ptime" style="background-color: #c0cfe8; width:100%;padding:5px;">Времени прошло:<b id="timeleft">10 мин 23 сек</b></p>
-             <br>
-             
-             <table width='100%' cellpadding=0 cellspacing=0 id="exp">                         
-             <tr>
-             <td colspan="1">
-             <img id="bstart" src='img/play.png' width=72 />
-             <img id='bstop' src='img/stop.png' width=48 /> 
-             </td>                          
-             
-             <td align='center' colspan="2" style="border: 1px solid #9aa5b7;">
-             <span id='min' style="font-size: 30pt;">0</span> мин
-             <span id='sec' style="font-size: 30pt;">0</span> сек
-             </td>
-             </tr>
-             
-             <tr><td colspan="3">
-             <h2 style="background-color: #DCDCDC;">Что нужно делать</h2>             
-                                                                                                                                
-             <div id="descr" style="font-size: 12pt; border: 1px solid #DCDCDC; float: left;">             
-             Спокойно стоять и думать о хорошем в течение 5 минут.</div>
-             </td>
-             </tr>
-             
-             <tr>
-             <td colspan="3" style=""><img id="img" src='trainings/stay.jpg' height=200 /></td>
-             </tr>
-             </table>
-             <img id="splash" src="img/kopaem.jpg" width='70%' />
-             <input type="hidden" name="timetest" id="timetest" value="0">
-             <input type="hidden" name="hiduser" id="hiduser" value="0">
-             <input type="hidden" name="id_exp" id="id_exp" value="0">             
-             <input type="hidden" name="lref" id="lref" value=""> 
-        </div>     
-        
-    
-    
-        <div data-options="title:'Результаты'" style="height:40px;background:white;padding:10px;">         
-        <p id="layres">Результатов пока нет.</p>
-        <!--p id="laylink" style="text-decoration: underline; color: blue;">Обновить</p-->
+        <audio controls="" class="player" src="sound.mp3">yyyy</audio>                    
+        <div id='descr' style="z-index:2;padding-left:10px; position: fixed;top:100px; width:100%; font-weight: 700; background-color: white; opacity: 0.6;">
+        ОМ ВАДЖРА САТТВА САМАЯ <br> 
+        МАНУ ПАЛАЯ /<br> 
+        ВАДЖРА САТВА ТЭНОПА <br>
+        ТИШТО ДРИДХО МЕ БХАВА <br>
+        СУТО КАЁ МЕ БХАВА <br>
+        СУПО КАЁ МЕ БХАВА <br>
+        АНУРАКТО МЕ БХАВА <br>
+        САРВА СИДДХИ МЕМ ПРАЯЦА <br>
+        САРВА КАРМА СУЦА МЕ <br>
+        ЦИТТАМ ШРИ ЯМ <br>
+        КУРУ ХУНГ ХАХА ХАХА ХО БХАГАВАН <br>
+        САРВА ТАТХАГАТА <br>
+        ВАДЖРА МАМЕ МЮНЦА ВАДЖРИ <br>
+        БХАВА МАХА САМАЯ САТТВА А 
         </div>
         
-    
-    
-    </div>
-    <div id="duser" data-options="" style="height:40px;background:white;padding:10px;">    
-            Тесты выполняет
-    </div> 
-    
-    <div id="mmm" style="background-color: yellow; width: 300px; height:100px; overflow: scroll;">кукисы</div>
+        <div id="laymain" style="border: 0px solid red; background: url(img/vp.jpg) 100% 100% no-repeat; background-size: contain; 
+        opacity: 1;z-index:1;vertical-align:bottom;"> 
         
-       
+                 
+        </div>     
+        <div id='progress' width='100%'></div>
+        <div id='who'>asdada</div>
+        
+        <!--img style="position: fixed; bottom: 0px;;" id="splash" src="buddha.png" / -->
+             <input type="hidden" name="timetest" id="timetest" value="0">
+             <input type="hidden" name="hiduser" id="hiduser" value="0">
+             <input type="hidden" name="id_exp" id="id_exp" value="0">   
+        
+
+        
            
         <div class='app' style='display: none;'> </div>
-        
-    <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="main.js"></script>
+
 
 </body>
 </html>

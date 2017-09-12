@@ -1,3 +1,5 @@
+/*
+
 function loadScript(url, callback)
 {
 
@@ -61,10 +63,9 @@ function setCookie(name, value, options)
   document.cookie = updatedCookie;
 }
   
-
-//alert('111');  
+*/
 //PORT=80;
-PATH2='http://tvard.skladovka.ru:8081/source';
-PATH='http://192.168.1.145/source';
+
+PATH='http://integralkin.ru/meditation';
 
 //PATH=PATH2;

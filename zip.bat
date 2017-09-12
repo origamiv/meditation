@@ -17,3 +17,7 @@
 "c:\Program Files\7-Zip\7z.exe" a project.zip testproject
 c:\curl\bin\curl -u origamiv@gmail.com:9030404 -X PUT -F file=@project.zip http://build.phonegap.com/api/v1/apps/2563816
 c:\curl\bin\curl -u origamiv@gmail.com:9030404 -X POST -d '' https://build.phonegap.com/api/v1/apps/2563816/build
+
+timeout 10
+del /Q *.apk
+c:\curl\bin\curl -u origamiv@gmail.com:9030404 -o medit.apk https://build.phonegap.com/apps/2563816/download/android

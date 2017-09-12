@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
 <html id="htmlid">
     <head>                     
         <meta name="format-detection" content="telephone=no">
@@ -17,67 +35,12 @@
        <script src="common.js"></script>
        <title>Mobile Helper</title>
     </head>
-    <body class="easyui-layout">                                                              
-        <div data-options="region:'north',border:false" style="height:60px;padding-left:10px"><h1>Personal Trener</h1></div>               
+    <body style="margin: 0;">                                                              
          
-        <div data-options="region:'center'" style="padding: 20px;">
-        
-        <form id="flogin" method="post">
-            <h2>Авторизуйтесь</h2>
-            <table cellpadding='5px' border=0>
-              <tr> 
-              <td style="width: 70px;">Ваш ID</td>
-              <td><input class="easyui-textbox" type="text" name="id_user" id='id_user' data-options="" /></td>
-              </tr>
-              <tr style="padding: 20px;">
-                <td colspan="2" align="center" id="reg"><input type="submit" value="Авторизоваться"></td>
-              </tr>
-            </table>
-        </form>    
-            <h2>...или зарегистрируйтесь</h2>
-            
-        <form id="freg" method="post">    
-            <table cellpadding='5px' border=0>
-            <tr style="padding: 20px;">
-                <td style="width: 70px;"><label for="fio">ФИО:</label></td>
-                <td><input class="easyui-textbox" type="text" name="fio" id='fio' data-options="" /></td>
-            </tr>
-            <tr style="padding: 20px;">
-                <td><label for="age">Возраст:</label></td>
-                <td><input class="easyui-textbox" type="text" name="age" id='age' data-options="" /></td>
-            </tr>
-            
-            <tr style="padding: 20px;">
-                <td><label for="ves">Вес:</label></td>
-                <td><input class="easyui-textbox" type="text" name="ves" id='ves' data-options="" /></td>
-            </tr>
-            
-            <tr style="padding: 20px;">
-                <td><label for="rost">Рост:</label></td>
-                <td><input class="easyui-textbox" type="text" name="rost" id='rost' data-options="" /></td>
-            </tr>
-            
-            <tr style="padding: 20px;">
-                <td><label for="device">ID каски:</label></td>
-                <td><input class="easyui-textbox" type="text" name="device" id='device' data-options="" /></td>
-            </tr>
-            
-            <!--tr style="padding: 20px;">
-                <td><label for="email">Email:</label></td>                
-                <td><input class="easyui-textbox" type="text" name="email" data-options="validType:'email'" /></td>
-            </tr-->
-            
-            <tr style="padding: 20px;">
-                <td colspan="2" align="center" id="reg"><input type="submit" value="Зарегистрироваться"></td>
-            </tr>
-            
-            </table>
-             
-        </form>
-         
-    
-        </div>     
-    <div data-options="region:'south',border:false" style="height:40px;background:white;padding:10px;">Результаты</div>
+    <div data-options="" id="pril" style="background:yellowgreen;display:table-cell;vertical-align:middle;">
+       <center><img src="buddha.png" width="300"><center><br>
+       <h1 ><a style="color: darkgreen;text-decoration: underline;" href='second.html'>Помощник для медитации</a></h1>
+    </div>
         
         <div class='app' style='display: none;'> </div>
         <script type="text/javascript" src="cordova.js"></script>
@@ -86,68 +49,12 @@
         $( document ).ready(function() 
         {
         
-        $('#flogin').form({            
-            onSubmit:function()
-            {
-                    var id_user=$('#id_user').val();
-                    
-                    //alert(PATH);
-                    if (id_user!='')
-                    {
-                    $.get( PATH+'/ajax_func.php?func=user_by_id&id='+id_user, function( data ) {                    
-                        //alert(data);
-                        if (data=='[]')
-                        {
-                            alert('Нет таклого пользователя');
-                        }
-                        else
-                        {
-                            document.location='second.html#user_'+id_user;  
-                        }
-                       //$('#reg').html(data);
-                    });                                 
-                    }
-                    else 
-                    {
-                      alert('Введите хотя бы что-нибудь');  
-                    }
-            }
-        });
-        
-        
-        $('#freg').form({            
-            onSubmit:function()
-            {
-                var prok=$(this).form('validate');
-                if (prok==true)
-                {
-                    var fio=$('#fio').val();
-                    var age=$('#age').val();
-                    var ves=$('#ves').val();
-                    var rost=$('#rost').val();
-                    var device=$('#device').val();
-                    var url=PATH+'/mobile_reg.php?fio='+fio+'&age='+age+'&ves='+ves+'&rost='+rost+'&device='+device;
-                    //alert(url);
-                    $.get(url, function( data ) {                    
-                       // alert(data );
-                       if (data>0)
-                       {
-                            $('#reg').html('Ваш ID'+data);
-                       
-                            setTimeout(function(){
-                                document.location='second.html#user_'+data;   
-                            }, 3000); 
-                       }
-                       else 
-                       {
-                           alert('Регистрация не прошла');
-                       }
-                       
-                    });
-                }
-                return false; //
-            }
-        });
+        ch=document.body.clientHeight;
+        ch=document.documentElement.clientHeight;
+        cw=document.documentElement.clientWidth;
+        //alert(ch);
+      
+         $('#pril').css('height', ch).css('width', cw)
         
         });    
         
